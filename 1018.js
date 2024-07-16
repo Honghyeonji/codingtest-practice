@@ -1,27 +1,46 @@
 const fs = require("fs");
 const input = fs.readFileSync("/dev/stdin").toString().trim().split("\n");
 
-const chess_ver1 = [
-  ["W", "B", "W", "B", "W", "B", "W", "B"],
-  ["B", "W", "B", "W", "B", "W", "B", "W"],
-  ["W", "B", "W", "B", "W", "B", "W", "B"],
-  ["B", "W", "B", "W", "B", "W", "B", "W"],
-  ["W", "B", "W", "B", "W", "B", "W", "B"],
-  ["B", "W", "B", "W", "B", "W", "B", "W"],
-  ["W", "B", "W", "B", "W", "B", "W", "B"],
-  ["B", "W", "B", "W", "B", "W", "B", "W"],
-];
+// const chess_ver1 = [
+//   ["W", "B", "W", "B", "W", "B", "W", "B"],
+//   ["B", "W", "B", "W", "B", "W", "B", "W"],
+//   ["W", "B", "W", "B", "W", "B", "W", "B"],
+//   ["B", "W", "B", "W", "B", "W", "B", "W"],
+//   ["W", "B", "W", "B", "W", "B", "W", "B"],
+//   ["B", "W", "B", "W", "B", "W", "B", "W"],
+//   ["W", "B", "W", "B", "W", "B", "W", "B"],
+//   ["B", "W", "B", "W", "B", "W", "B", "W"],
+// ];
 
-const chess_ver2 = [
-  ["B", "W", "B", "W", "B", "W", "B", "W"],
-  ["W", "B", "W", "B", "W", "B", "W", "B"],
-  ["B", "W", "B", "W", "B", "W", "B", "W"],
-  ["W", "B", "W", "B", "W", "B", "W", "B"],
-  ["B", "W", "B", "W", "B", "W", "B", "W"],
-  ["W", "B", "W", "B", "W", "B", "W", "B"],
-  ["B", "W", "B", "W", "B", "W", "B", "W"],
-  ["W", "B", "W", "B", "W", "B", "W", "B"],
-];
+// const chess_ver2 = [
+//   ["B", "W", "B", "W", "B", "W", "B", "W"],
+//   ["W", "B", "W", "B", "W", "B", "W", "B"],
+//   ["B", "W", "B", "W", "B", "W", "B", "W"],
+//   ["W", "B", "W", "B", "W", "B", "W", "B"],
+//   ["B", "W", "B", "W", "B", "W", "B", "W"],
+//   ["W", "B", "W", "B", "W", "B", "W", "B"],
+//   ["B", "W", "B", "W", "B", "W", "B", "W"],
+//   ["W", "B", "W", "B", "W", "B", "W", "B"],
+// ];
+
+function makeChess(p_1, p_2) {
+  const board = [];
+  for (let i = 0; i < 8; i++) {
+    const rowArr = [];
+    for (let j = 0; j < 8; j++) {
+      if ((i + j) % 2 === 0) {
+        rowArr.push(p_1);
+      } else {
+        rowArr.push(p_2);
+      }
+    }
+    board.push(rowArr);
+  }
+  return board;
+}
+
+const chess_ver1 = makeChess("W", "B");
+const chess_ver2 = makeChess("B", "W");
 
 const [row, col] = input[0].split(" ").map(Number);
 const arr = input.slice(1).map((line) => line.split(""));
